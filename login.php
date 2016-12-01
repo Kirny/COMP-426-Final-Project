@@ -9,7 +9,7 @@ $conn = new mysqli($hn, $usr, $pw, $db);
 
 function check_password($username, $password) {
 
-  $sql = "SELECT username, password FROM Users WHERE username = '$username'";
+  $sql = "SELECT username, password FROM User WHERE username = '$username'";
 
   $result = mysqli_query($conn, $sql);
 
