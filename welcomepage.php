@@ -11,7 +11,8 @@ if($conn->connect_error){
 $username = $_SESSION['username'];
 echo $_SESSION['username'];
 
-$sql = "SELECT * FROM Account WHERE User.username = '$username' AND User.default_acc = Account.id";
+$sql = "SELECT * FROM Account INNER JOIN User ON User.id = Account.user_id
+        WHERE User.username = '$username' AND User.default_acc = Account.id";
 $result = mysqli_query($conn, $sql);
 
 $balance = null;
