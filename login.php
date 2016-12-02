@@ -46,3 +46,4 @@ if (check_password($username, $password)) {
   header('Content-type: application/json');
   print(json_encode(false));
 }
+?>
