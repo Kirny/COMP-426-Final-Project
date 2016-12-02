@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="login_page.css">
+  <link rel="stylesheet" type="text/css" href="jquery.modal.css">
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+			  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+			  crossorigin="anonymous"></script>
+  <script src="jquery.modal.js"></script>
+  <script src="login.js"></script>
+</head>
+<body>
+  <form id="register-form" class="modal">
+    <p> REGISTER HERE FOR AN ACCOUNT! </p>
+    <input type="text" placeholder="username" name="username"/>
+    <input type="password" placeholder="password" name="password"/>
+    <input type="text" placeholder="email address"/>
+    <button>create</button>
+  </form>
+  <div>
+    <p class="title"><span> Bank of Carolina</span></p>
+  </div>
+  <div class="login-page">
+    <div class="form">
+      <form class="login-form" accept-charset="UTF-8">
+        <input type="text" placeholder="username" name="username"/>
+        <input type="password" placeholder="password" name="password"/>
+        <button type="submit">login</button>
+        <p class="message">Not registered? <a href="#register-form" rel="modal:open">Create an account</a></p>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

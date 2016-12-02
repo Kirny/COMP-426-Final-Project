@@ -2,20 +2,19 @@
 
 session_start();
 
-include 'database.php';
-
-/* BUILD A CONNECTION WITH SQL */
-$conn = new mysqli($hn, $usr, $pw, $db);
-
 function check_password($username, $password) {
 
-  $sql = "SELECT username, password FROM User WHERE username = '$username'";
+  include 'database.php';
+
+  $conn = new mysqli($hn, $usr, $pw, $db);
+
+  $sql = "SELECT password FROM User WHERE username = '$username'";
 
   $result = mysqli_query($conn, $sql);
 
   if($result->num_rows > 0) {
     $row = $result->fetch_assoc();
-    if(md5($password) == md5($row["password"]) {
+    if(md5($password) == $row["password"]) {
       return true;
     }
   }
