@@ -1,26 +1,25 @@
 <?php
 session_start();
 require_once('authenticate.php');
+include("database.php");
 
-$conn = new mysqli("classroom.cs.unc.edu", "dyj", "dudwp524", "dyjdb");
+$conn = new mysqli($hn, $usr, $pw, $db);
 if($conn->connect_error){
     die("Connection failed: " . $conn->connect_error);
 }
 
 $username = $_SESSION['username'];
 
-$sql = "SELECT * FROM Account INNER JOIN Account.user_id = User.id
-        WHERE User.username = '$username' AND User.default_acc = Account.id";
+$sql = "SELECT * FROM Account WHERE User.username = '$username' AND User.default_acc = Account.id";
 $result = mysqli_query($conn, $sql);
 
 $balance = null;
 if($result->num_rows > 0) {
   $row = $result->fetch_array();
-  $balance = $row[1];
+  header('Content-type: application/json');
+  echo json_encode($row);
 }else{
   echo "Query returned with no data.";
 }
-
-$_SESSION['balance'] = $balance;
 
 ?>
