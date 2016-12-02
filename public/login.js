@@ -24,7 +24,6 @@ $(document).ready(function () {
         	data: $('.login-form').serialize(),
         	cache: false,
         	success: function () {
-        		  alert('Login Successful');
               window.location ='welcomepage.html';
           },
         	error: function () {
