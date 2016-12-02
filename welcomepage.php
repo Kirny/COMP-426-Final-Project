@@ -9,6 +9,7 @@ if($conn->connect_error){
 }
 
 $username = $_SESSION['username'];
+echo $_SESSION['username'];
 
 $sql = "SELECT * FROM Account WHERE User.username = '$username' AND User.default_acc = Account.id";
 $result = mysqli_query($conn, $sql);
