@@ -7,8 +7,8 @@ var fetch_balance = function () {
     $.ajax("../welcomepage.php",
 	         {type: "GET",
 	         dataType: "json",
-	         success: function (balance, textStatus, jqXHR) {
-              div.append("<h4>"+ "Test" +"</h4>");
+	         success: function (data, textStatus, jqXHR) {
+              div.append("<h4>"+ "$ " + data["balance"] + "</h4>");
 	         }
 	         });
 };
