@@ -27,9 +27,13 @@ $(document).ready(function () {
              {type: 'GET',
               data: $('#register-form').serialize(),
               cache: false,
-              success: function () {
-                  alert('Registration Successful');
-                  $.modal.close();
+              success: function (data) {
+                  if(data.username_exist_flag == 1) {
+                    alert("Username Already Exists!");
+                  } else {
+                    alert('Registration Successful');
+                    $.modal.close();
+                  }
               },
               error: function () {
                   alert('Something Wrong Occured! Contact the development team.');}

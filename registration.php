@@ -1,13 +1,23 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+$username_exist_flag = 0;
 
 function register_user($firstname, $lastname, $username, $password) {
 
   include 'database.php';
 
   $conn = new mysqli($hn, $usr, $pw, $db);
+
+  $sql = "SELECT * FROM User WHERE username = '$username'";
+
+  $result = mysqli_query($conn, $sql);
+
+  if($result->num_rows > 0) {
+    global $username_exist_flag;
+    $username_exist_flag = 1;
+    return true;
+  }
+
 
   $sql = "INSERT INTO User VALUES (NULL, '$firstname', '$lastname', '$username', '$password', NULL)";
 
@@ -45,7 +55,7 @@ $password = md5($_GET['password']);
 
 if(register_user($firstname, $lastname, $username, $password)) {
   header('Content-type: application/json');
-  print(json_encode(true));
+  print("{\"username_exist_flag\":$username_exist_flag}");
 } else {
   header('HTTP/1.1 401 Unauthorized');
   header('Content-type: application/json');
