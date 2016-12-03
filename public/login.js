@@ -8,7 +8,7 @@ $(document).ready(function () {
           	data: $('.login-form').serialize(),
           	cache: false,
           	success: function () {
-                window.location ='welcomepage.html';
+                window.location ='welcomepage.php';
             },
           	error: function () {
           		  alert('Username or Password incorrect');}

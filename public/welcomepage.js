@@ -6,7 +6,7 @@ var fetch_userInfo = function () {
     var fn = $('#fullname');
     var un = $('#username');
     var bal = $('#balance');
-    $.ajax("../welcomepage.php",
+    $.ajax("../welcomepage_load.php",
 	         {type: "GET",
 	         dataType: "json",
            cache: false,
