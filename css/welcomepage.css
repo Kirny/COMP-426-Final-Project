@@ -68,7 +68,7 @@ ul.c-controls li {
 
 ul.c-controls li a {
     font-size: 1.7em;
-    padding: 11px 10px 6px;   
+    padding: 11px 10px 6px;
 }
 ul.c-controls li a i {
     min-width: 24px;
@@ -91,4 +91,9 @@ ul.c-controls li a:hover {
 .c-info {
     padding: 5px 10px;
     font-size: 1.25em;
+}
+
+#profilepic{
+    border: solid black;
+    border-radius: 1px;
 }
