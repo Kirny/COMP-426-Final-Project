@@ -1,14 +1,18 @@
 $(document).ready(function () {
-    fetch_balance();
+    fetch_userInfo();
 });
 
-var fetch_balance = function () {
-    var div = $("#balance");
+var fetch_userInfo = function () {
+    var fn = $('#fullname');
+    var un = $('#username');
+    var bal = $('#balance');
     $.ajax("../welcomepage.php",
 	         {type: "GET",
 	         dataType: "json",
 	         success: function (data, textStatus, jqXHR) {
-              div.append("<h4>"+ "$ " + data["balance"] + "</h4>");
+              fn.append("<div>" + data["firstname"] + " " + data["lastname"] + "</div>" + "<br>");
+              un.append("<div>" + data["username"] + "</div>" + "<br>");
+              bal.append("<h4>"+ "$ " + data["balance"] + "</h4>");
 	         }
 	         });
 };

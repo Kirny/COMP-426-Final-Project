@@ -14,7 +14,6 @@ $sql = "SELECT * FROM Account INNER JOIN User ON User.id = Account.user_id
         WHERE User.username = '$username' AND User.default_acc = Account.id";
 $result = mysqli_query($conn, $sql);
 
-$balance = null;
 if($result->num_rows > 0) {
   $row = $result->fetch_assoc();
   $data = $row;
