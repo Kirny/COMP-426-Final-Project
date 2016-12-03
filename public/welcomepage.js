@@ -9,6 +9,7 @@ var fetch_userInfo = function () {
     $.ajax("../welcomepage.php",
 	         {type: "GET",
 	         dataType: "json",
+           cache: false,
 	         success: function (data, textStatus, jqXHR) {
               fn.append("<div>" + data["firstname"] + " " + data["lastname"] + "</div>" + "<br>");
               un.append("<div>" + data["username"] + "</div>" + "<br>");
