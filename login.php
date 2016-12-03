@@ -34,7 +34,7 @@ if (check_password($username, $password)) {
 
   $auth_cookie_val = md5($_SESSION['username'] . $_SERVER['REMOTE_ADDR'] . $_SESSION['authsalt']);
 
-  setcookie('BANKAUTH', $auth_cookie_val, 0, '/Courses/comp426-f16/users/'. $username .'/ProjectArea', 'wwwp.cs.unc.edu', true); //ProjectArea can be changed.
+  setcookie('BANKAUTH', $auth_cookie_val, 0, '/Courses/comp426-f16/users', 'wwwp.cs.unc.edu', true); //ProjectArea can be changed.
 
   print(json_encode(true));
 
