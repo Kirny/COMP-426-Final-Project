@@ -18,14 +18,14 @@ $(document).ready(function () {
   $('#register-form').on('submit', function (e) {
     e.stopPropagation();
     e.preventDefault();
-    if($('#username_box').val().length < 2 || $('#username_box').val().length > 12) {
-      alert("Username must be between 2 to 12 characters");
+    if($('#username_box').val().length < 2 || $('#username_box').val().length > 10) {
+      alert("Username must be between 2 to 10 characters");
     } else if($('#password_box').val().length < 2 || $('#password_box').val().length > 12) {
       alert("Password must be between 5 to 12 characters");
     } else {
       $.ajax('../registration.php',
              {type: 'GET',
-              data: $('.register-form').serialize(),
+              data: $('#register-form').serialize(),
               cache: false,
               success: function () {
                   alert('Registration Successful');
