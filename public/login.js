@@ -20,7 +20,7 @@ $(document).ready(function () {
     e.preventDefault();
     if($('#username_box').val().length < 2 || $('#username_box').val().length > 10) {
       alert("Username must be between 2 to 10 characters");
-    } else if($('#password_box').val().length < 2 || $('#password_box').val().length > 12) {
+    } else if($('#password_box').val().length < 5 || $('#password_box').val().length > 12) {
       alert("Password must be between 5 to 12 characters");
     } else {
       $.ajax('../registration.php',
