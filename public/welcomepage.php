@@ -75,7 +75,7 @@
 <div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-3">
-      <img id ="profilepic" src="http://www.cs.unc.edu/~kmp/kmp.jpg">
+      <img id ="profilepic" src="img/kmp.jpg">
     <br><br>
 	  <div id="fullname"> <strong>Name</strong> : </div>
     <div id="username"> <strong>Username: </strong></div>
