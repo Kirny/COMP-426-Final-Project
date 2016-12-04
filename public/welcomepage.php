@@ -76,9 +76,9 @@
   <div class="row content">
     <div class="col-sm-3">
       <img id ="profilepic" src="img/kmp.jpg">
-      <form action="../upload.php" method="post" enctype="multipart/form-data">
-        <input type="text" name="fileToUpload" id="fileToUpload" placeholder="Url to your picture">
-        <input type="submit" value="Upload Image" name="submit">
+      <form id = "profilepic-form" action="../upload.php" method="post" enctype="multipart/form-data">
+        <input type="text" name="pictureURL" id="fileToUpload" placeholder="Url to your picture">
+        <button type="submit">Upload</button>
       </form>
     <br><br>
 	  <div id="fullname"> <strong>Name</strong> : </div>
