@@ -1,6 +1,6 @@
 <?php
   session_start();
-  
+
   require_once('../authenticate.php');
  ?>
 
@@ -85,9 +85,10 @@
     <div class="col-sm-6">
       <h1>Welcome to Bank of Carolina</h1>
       <hr>
-      <h2>Current Account(s)</h2>
-      <div id="accounts-container">
-          <table id="accounts" border="1" cellpadding="5" cellspacing="5">
+      <h3>Your Account(s)</h3>
+      <div id="accounts-box">
+          <table id="accounts" cellpadding="5" cellspacing="10">
+              <tr id="default"> </tr>
           </table>
       </div>
     </div>

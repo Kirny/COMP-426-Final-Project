@@ -97,3 +97,14 @@ ul.c-controls li a:hover {
     border: solid black;
     border-radius: 1px;
 }
+
+#accounts{
+    border: solid black;
+    border-radius: 1px;
+    margin: 0 auto;
+    width: 440px;
+}
+
+#default{
+    border: 2px solid black;
+}
