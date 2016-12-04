@@ -93,14 +93,15 @@ ul.c-controls li a:hover {
     font-size: 1.25em;
 }
 
-#profilepic{
-    border: solid black;
-    border-radius: 1px;
-    width: 280px;
-    height: 230px;
+h1{
+    text-align: center;
 }
 
-#accounts{
+#transfer-box{
+    width: 95%;
+}
+
+.acc-display{
     border: solid black;
     border-radius: 1px;
     margin: 0 auto;
@@ -108,23 +109,31 @@ ul.c-controls li a:hover {
     background-color: azure;
 }
 
-#accounts td{
+#from-box{
+    float: left;
+}
+
+#to-box{
+    float: right;
+}
+
+#from td, #to td{
     text-align: left;
     padding-left: 20px;
 }
 
-#accounts td + td{
+#from td + td, #to td + td{
     text-align: right;
     padding-right: 20px;
 }
 
 
-#default{
+.default-acc{
     border: 2px solid black;
 }
 
-#transfer{
+#confirm{
     background-color: azure;
     float: right;
-    margin-right: 55px;
+    margin-right: 200px;
 }
