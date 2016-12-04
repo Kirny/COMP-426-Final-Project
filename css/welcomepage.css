@@ -122,3 +122,7 @@ ul.c-controls li a:hover {
 #default{
     border: 2px solid black;
 }
+
+#fileToUpload {
+  display: inline;
+}
