@@ -85,6 +85,7 @@
     <div class="col-sm-6">
       <h1>Welcome to Bank of Carolina</h1>
       <hr>
+      <br>
       <h3>Your Account(s)</h3>
       <div id="accounts-box">
           <table id="accounts" cellpadding="5" cellspacing="10">

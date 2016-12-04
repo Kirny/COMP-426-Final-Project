@@ -105,6 +105,11 @@ ul.c-controls li a:hover {
     width: 440px;
 }
 
+#accounts td{
+    text-align: left;
+    padding-left: 20px;
+}
+
 #default{
     border: 2px solid black;
 }
