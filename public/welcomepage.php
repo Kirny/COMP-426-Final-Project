@@ -75,7 +75,7 @@
 <div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-3">
-      <img id ="profilepic" src="img/kmp.jpg">
+      <img id ="profilepic" src="http://www.journalnetwork.org/assets/default-profile-54364fb08cf8b2a24e80ed8969012690.jpg">
       <form id = "profilepic-form" action="../upload.php" method="post" enctype="multipart/form-data">
         <input type="text" name="pictureURL" id="fileToUpload" placeholder="Url to your picture">
         <button type="submit">Upload</button>
