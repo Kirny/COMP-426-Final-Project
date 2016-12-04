@@ -1,6 +1,5 @@
 <?php
   session_start();
-
   require_once('../authenticate.php');
  ?>
 
@@ -94,6 +93,10 @@
           <table id="accounts" cellpadding="5" cellspacing="10">
               <tr id="default"> </tr>
           </table>
+      </div>
+      <div>
+        <br>
+        <button id="transfer">Transfer </button>
       </div>
     </div>
 	<!-- From here is the contact stuff -->
