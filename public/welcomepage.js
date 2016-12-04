@@ -1,5 +1,20 @@
 $(document).ready(function () {
     fetch_userInfo();
+
+    $('#profilepic-form').on('submit', function (e) {
+    	e.stopPropagation();
+    	e.preventDefault();
+    	$.ajax('../upload.php',
+    	       {type: 'GET',
+            	data: $('#profilepic-form').serialize(),
+            	cache: false,
+            	success: function () {
+                  alert("profile pic has successfully been changed!");
+              },
+            	error: function () {
+            		  alert('Incorrect Url or incorrect format!');}
+    	        });
+    });
 });
 
 var fetch_userInfo = function () {
