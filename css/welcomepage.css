@@ -110,6 +110,12 @@ ul.c-controls li a:hover {
     padding-left: 20px;
 }
 
+#accounts td:nth-child(even){
+    text-align: right;
+    padding-right: 10px;
+}
+
+
 #default{
     border: 2px solid black;
 }
