@@ -96,6 +96,8 @@ ul.c-controls li a:hover {
 #profilepic{
     border: solid black;
     border-radius: 1px;
+    width: 280px;
+    height: 230px;
 }
 
 #accounts{

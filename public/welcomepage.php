@@ -63,7 +63,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="../logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
@@ -75,7 +75,7 @@
 <div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-3">
-      <img id ="profilepic" src="http://www.cs.unc.edu/~kmp/kmp.jpg" width="280" height="230">
+      <img id ="profilepic" src="http://www.cs.unc.edu/~kmp/kmp.jpg">
     <br><br>
 	  <div id="fullname"> <strong>Name</strong> : </div>
     <div id="username"> <strong>Username: </strong></div>
