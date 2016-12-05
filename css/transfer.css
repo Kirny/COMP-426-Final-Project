@@ -111,10 +111,19 @@ h1{
 
 #from-box{
     float: left;
+    display: block;
 }
 
 #to-box{
     float: right;
+    display: block;
+}
+
+#arrow{
+    vertical-align: middle;
+}
+#arrow h1{
+    font-size: 48px;
 }
 
 #from td, #to td{
@@ -135,5 +144,13 @@ h1{
 #confirm{
     background-color: azure;
     float: right;
-    margin-right: 200px;
+    margin-right: 120px;
+}
+
+.acc-display tr:not(.selected):hover{
+    background-color: #FAF0E6;
+}
+
+.selected{
+    background-color: #6495ED;
 }

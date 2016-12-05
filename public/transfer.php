@@ -3,7 +3,6 @@
   require_once('../authenticate.php');
  ?>
 
-
  <!DOCTYPE html>
  <html lang="en">
  <head>
@@ -13,7 +12,7 @@
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   <!-- <script src="transfer.js"></script> -->
+   <script src="transfer.js"></script>
    <style>
      /* Remove the navbar's default margin-bottom and rounded borders */
      .navbar {
@@ -88,14 +87,17 @@
               <tr class="default-acc"> </tr>
           </table>
         </div>
+        <br><br><br><br>
+        <div id="arrow">
+            <h1> &#8658;</h1>
+        </div>
     </div>
  </div>
  <br>
  <div>
     <button id="confirm"> Transfer Now! </button>
  </div>
-
- <br>
+ <br><br><br><br>
  <footer class="container-fluid text-center">
    <p>Copyright Felix INC</p>
  </footer>
