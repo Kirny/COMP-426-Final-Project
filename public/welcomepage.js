@@ -65,13 +65,29 @@ var fetch_userInfo = function () {
             dataType: "json",
             cache: false,
             success: function (data) {
-              alert("hey! don't mind me i'm testing!");
               var size = Object.keys(data).length;
-              /*
-              for(i = 0; i < size; i++) {
+              var firstname;
+              var lastname;
+              var username;
+              var profilepic_url;
 
+              for(i = 0; i < size; i++) {
+                firstname = data[i].firstname;
+                lastname = data[i].lastname;
+                username = data[i].username;
+                profilepic_url = data[i].profilepic_url;
+                $("#contact-list").append("<li class=\"list-group-item\">" +
+                  "<div class=\"col-xs-12 col-sm-3\">" +
+                    "<img src=" + "\"" + profilepic_url + "\"" + "alt=\"Scott Stevens\" class=\"img-responsive img-circle\" />" +
+                  "</div>" +
+                  "<div class=\"col-xs-12 col-sm-9\">" +
+                    "<span class=\"name\">" + firstname + " " + lastname + "</span><br/>" +
+                    "<small>" + username + "</small>" +
+                    "</div>" +
+                    "<div class=\"clearfix\"></div>" +
+                  "</li>");
               }
-              */
+
             },
             error: function () {
               alert("please reload page something went wrong!");

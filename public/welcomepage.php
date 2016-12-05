@@ -76,7 +76,7 @@
     <div class="col-sm-3">
       <img id ="profilepic" src="">
       <form id = "profilepic-form" action="../upload.php" method="post" enctype="multipart/form-data">
-        <input type="text" name="pictureURL" id="fileToUpload" placeholder="Url to your picture">
+        <input type="text" name="pictureURL" id="fileToUpload" placeholder="URL to your picture">
         <button type="submit">Upload</button>
       </form>
     <br><br>
@@ -123,26 +123,7 @@
                 </div>
 
                 <ul class="list-group" id="contact-list">
-                    <li class="list-group-item">
-                        <div class="col-xs-12 col-sm-3">
-                            <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Scott Stevens" class="img-responsive img-circle" />
-                        </div>
-                        <div class="col-xs-12 col-sm-9">
-                            <span class="name">Scott Stevens</span><br/>
-                            <span class="glyphicon glyphicon-random c-info" data-toggle="tooltip" title="Give Money"></span>
-                        </div>
-                        <div class="clearfix"></div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="col-xs-12 col-sm-3">
-                            <img src="http://api.randomuser.me/portraits/men/49.jpg" alt="Scott Stevens" class="img-responsive img-circle" />
-                        </div>
-                        <div class="col-xs-12 col-sm-9">
-                            <span class="name">Scott Stevens</span><br/>
-                            <span class="glyphicon glyphicon-random c-info" data-toggle="tooltip" title="Give Money"></span>
-                        </div>
-                        <div class="clearfix"></div>
-                    </li>
+              
                 </ul>
             </div>
 	</div>
