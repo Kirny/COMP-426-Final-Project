@@ -8,8 +8,9 @@ $(document).ready(function () {
     	       {type: 'GET',
             	data: $('#profilepic-form').serialize(),
             	cache: false,
-            	success: function () {
+            	success: function (data) {
                   alert("profile pic has successfully been changed!");
+                  $('#profilepic').attr("src", data.pictureURL);
               },
             	error: function () {
             		  alert('Incorrect Url or incorrect format!');}
@@ -34,6 +35,9 @@ var fetch_userInfo = function () {
 
               $('#default').append("<td>" + "<h4> DEFAULT </h4>" + "</td>"
                         + "<td>" + "$ " + data[0]["balance"] + "</td>");
+
+              $('#profilepic').attr("src", data[0]["profilepic_url"]);
+
               if(data[1] != undefined){
                   for(i = 0; i < data[1].length; i++){
                   var index = i + 1;

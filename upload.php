@@ -1,7 +1,10 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
   session_start();
   $pictureURL = $_GET['pictureURL'];
+  $username = $_SESSION['username'];
 
   function isImage($url) {
      $params = array('http' => array(
@@ -35,9 +38,18 @@
   }
 
   if(isImage($pictureURL)) {
-    
-    header('Content-type: application/json');
-    print(json_encode(true));
+    include 'database.php';
+
+    $conn = new mysqli($hn, $usr, $pw, $db);
+
+    $sql = "UPDATE User SET profilepic_url='$pictureURL' WHERE username='$username'";
+
+    if($conn->query($sql) === FALSE) {
+      header('HTTP/1.1 401 Unauthorized');
+    } else {
+      header('Content-type: application/json');
+      print("{\"pictureURL\":\"$pictureURL\"}");
+    }
   } else {
     header('HTTP/1.1 401 Unauthorized');
     header('Content-type: application/json');

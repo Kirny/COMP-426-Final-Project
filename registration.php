@@ -19,7 +19,7 @@ function register_user($firstname, $lastname, $username, $password) {
   }
 
 
-  $sql = "INSERT INTO User VALUES (NULL, '$firstname', '$lastname', '$username', '$password', NULL)";
+  $sql = "INSERT INTO User VALUES (NULL, '$firstname', '$lastname', '$username', '$password', NULL, DEFAULT)";
 
   $user_id = 0;
 
