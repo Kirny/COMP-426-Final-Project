@@ -98,7 +98,7 @@
     <button id="confirm"> Transfer Now! </button>
  </div>
  <br><br><br><br>
- <footer class="container-fluid text-center">
+ <footer class="container-fluid text-center navbar-fixed-bottom">
    <p>Copyright Felix INC</p>
  </footer>
 
