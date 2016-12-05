@@ -65,11 +65,16 @@ var fetch_userInfo = function () {
             dataType: "json",
             cache: false,
             success: function (data) {
-              //alert("profile pic has successfully been changed!");
-              //$('#profilepic').attr("src", data.pictureURL);
-              //need to return json object of all contacts except the user!
+              alert("hey! don't mind me i'm testing!");
+              var size = Object.keys(data).length;
+              /*
+              for(i = 0; i < size; i++) {
+
+              }
+              */
             },
             error: function () {
+              alert("please reload page something went wrong!");
             }
           });
 };
