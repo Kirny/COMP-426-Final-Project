@@ -16,6 +16,8 @@ $(document).ready(function () {
             		  alert('Incorrect Url or incorrect format!');}
     	        });
     });
+
+     $('[data-toggle="tooltip"]').tooltip(); 
 });
 
 var fetch_userInfo = function () {
