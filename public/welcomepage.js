@@ -17,7 +17,7 @@ $(document).ready(function () {
     	        });
     });
 
-     $('[data-toggle="tooltip"]').tooltip(); 
+     $('[data-toggle="tooltip"]').tooltip();
 });
 
 var fetch_userInfo = function () {
@@ -58,6 +58,18 @@ var fetch_userInfo = function () {
                   }
               });
 	         }
-    });
+         });
 
+    $.ajax("../contactlist_load.php",
+           {type: "GET",
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+              //alert("profile pic has successfully been changed!");
+              //$('#profilepic').attr("src", data.pictureURL);
+              //need to return json object of all contacts except the user!
+            },
+            error: function () {
+            }
+          });
 };
