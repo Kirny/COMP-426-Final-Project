@@ -58,7 +58,7 @@
          <span class="icon-bar"></span>
          <span class="icon-bar"></span>
        </button>
-       <img class="navbar-brand" src="img/brand.jpg" alt="brand" width="80" height="300">
+       <img class="navbar-brand" src="img/brand.jpg" alt="brand" width="62" height="300">
      </div>
      <div class="collapse navbar-collapse" id="myNavbar">
        <ul class="nav navbar-nav">
