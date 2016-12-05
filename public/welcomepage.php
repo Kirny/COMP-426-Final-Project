@@ -96,6 +96,7 @@
       </div>
       <div>
         <br>
+        <button id="add_account">Add Account</button>
         <button id="transfer">Transfer </button>
       </div>
     </div>
@@ -123,7 +124,7 @@
                 </div>
 
                 <ul class="list-group" id="contact-list">
-              
+
                 </ul>
             </div>
 	</div>

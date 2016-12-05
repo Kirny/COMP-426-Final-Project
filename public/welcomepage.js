@@ -14,7 +14,23 @@ $(document).ready(function () {
               },
             	error: function () {
             		  alert('Incorrect Url or incorrect format!');}
-    	        });
+    	});
+    });
+
+    $('#account_add').on('click', function (e) {
+      $.ajax('../account.php',
+    	       {type: 'POST',
+            	cache: false,
+            	success: function (data) {
+                  alert("Account Added!");
+                  fetch_userInfo();
+              },
+            	error: function () {
+            		  alert('Something wrong occured!');
+              }
+    	});
+
+      alert("i've been clicked!");
     });
 
      $('[data-toggle="tooltip"]').tooltip();
