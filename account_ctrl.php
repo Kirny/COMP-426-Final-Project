@@ -1,4 +1,7 @@
 <?php
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 //session_start();
 require_once('orm/Account.php');
 
@@ -71,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     $new_balance = false;
     if (isset($_REQUEST['balance'])) {
       $new_balance = intval($_REQUEST['balance']);
-      if ($new_balance < 0)) {
+      if ($new_balance < 0) {
     	header("HTTP/1.0 400 Bad Request");
     	print("Cannot have a negative balance.");
     	exit();

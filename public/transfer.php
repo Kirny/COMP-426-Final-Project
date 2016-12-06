@@ -96,12 +96,13 @@
  <br>
  <div id="transfer-line">
     <span> + &nbsp; </span>
-    <input id="transfer-amt" type="text">
+    <input id="transfer-amt" type="number" length="6">
  </div>
  <br>
  <br>
- <div>
+ <div id="button-line">
     <button id="confirm"> Transfer Now! </button>
+    <button id="cancel"> Cancel </button>
  </div>
  <br><br><br><br>
  <footer class="container-fluid text-center navbar-fixed-bottom">

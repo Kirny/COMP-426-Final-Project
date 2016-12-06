@@ -37,8 +37,8 @@ class Account{
     $account_info = $result->fetch_array();
 
     return new Account(intval($account_info['id']),
-                       $account_info['balance'],
-                       intval($account_info['user_id']);
+                       floatval($account_info['balance']),
+                       intval($account_info['user_id']));
     }
     return null;
   }
@@ -82,7 +82,7 @@ class Account{
     $mysqli = Account::connect();
 
     $result = $mysqli->query("update Account set " .
-                             "balance=" . $this->balance
+                             "balance=" . $this->balance .
                              " where id=" . $this->id);
     return $result;
   }

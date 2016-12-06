@@ -141,18 +141,22 @@ h1{
     border: 2px solid black;
 }
 
-#confirm{
-    background-color: azure;
-    float: right;
-    margin-right: 120px;
-}
-
 .acc-display tr:not(.selected):hover{
     background-color: #FAF0E6;
 }
 
 .selected{
     background-color: #6495ED;
+}
+
+#button-line button{
+    background-color: azure;
+}
+
+#button-line{
+    display: inline-block;
+    float: right;
+    margin-right: 120px;
 }
 
 #transfer-line{

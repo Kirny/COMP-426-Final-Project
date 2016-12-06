@@ -1,10 +1,16 @@
 $(document).ready(function () {
     $('#transfer-line').hide();
     fetch_info();
-    $('#confirm').on('click', function(){
+    $('#cancel').on('click', function(){
        location.href = "welcomepage.php";
     });
 });
+
+var Account = function(account_json) {
+    this.id = account_json.id;
+    this.balance = account_json.balance;
+    this.user_id = account_json.user_id;
+};
 
 var fetch_info = function () {
     var def = $('.default-acc');
@@ -27,9 +33,9 @@ var fetch_info = function () {
               }
               selection();
 	         }
-    });
+           });
 
-  };
+};
 
 var selection = function() {
     $('#from tr').on('click', function(){
@@ -39,8 +45,71 @@ var selection = function() {
               $('#to tr').removeClass('selected');
               $(this).addClass('selected');
               $('#transfer-line').show();
-              var row_from = $('#from tr.selected').attr('id');
-              var row_to = $('#to tr.selected').attr('id');
+              var from_row = $('#from tr.selected').attr('id'); //from-def, from-1 ..
+              var from_index = (from_row.charAt(from_row.length - 1)) == 'f' ?  //0, 1, 2 ..
+                                0 : parseInt(from_row.charAt(from_row.length - 1));
+              var to_row = $('#to tr.selected').attr('id');
+              var to_index = (to_row.charAt(to_row.length - 1)) == 'f' ?
+                                0 : parseInt(to_row.charAt(to_row.length - 1));
+              $.ajax("../transfer_load.php",
+          	         {type: "GET",
+          	         dataType: "json",
+                     cache: false,
+          	         success: function (data, textStatus, jqXHR) {
+                        var from_id = from_index == 0 ?         //default chosen?
+                                  data[0]["default_acc"] : data[1][from_index - 1]["id"];
+                        var to_id = to_index == 0 ?
+                                data[0]["default_acc"] : data[1][to_index - 1]["id"];
+
+                        $.ajax("../account_ctrl.php/" + from_id,
+                                {type: "GET",
+                                dataType: "json",
+                                success: function(account_json, status, jqXHR){
+                                    from_acc = new Account(account_json);
+                                }
+                        });
+                        $.ajax("../account_ctrl.php/" + to_id,
+                                {type: "GET",
+                                dataType: "json",
+                                success: function(account_json, status, jqXHR){
+                                    to_acc = new Account(account_json);
+                                }
+                        });
+                        $('#confirm').on('click',
+                                      function (){
+                                        alert("Ive been clicked");
+                                        var amount = $('#transfer-amt').val();
+                                        if(!amount){
+                                          if(amount < 0){
+                                              alert("Negative amount not allowed");
+                                          }
+                                          var from_bal = from_acc.balance - amount;
+                                          var to_bal = to_acc.balance + amount;
+                                          $.ajax("../account_ctrl.php/" + from_id,
+                                                     {type: "POST",
+                                                     dataType: "json",
+                                                     data: from_bal.serialize(),
+                                                     success: function(account_json, textStatus, jqXHR){
+                                                        console.log(account_json);
+                                                     },
+                                                     error: function(jqXHR, status, error){
+                                                        alert(jqXHR.responseText);
+                                          }});
+                                          $.ajax("../account_ctrl.php/" + to_id,
+                                                     {type: "POST",
+                                                     dataType: "json",
+                                                     data: to_bal.serialize(),
+                                                     success: function(account_json, textStatus, jqXHR){
+                                                        console.log(account_json);
+                                                     },
+                                                     error: function(jqXHR, status, error){
+                                                        alert(jqXHR.responseText);
+                                          }});
+                                        }
+                                        //location.href = "welcomepage.php";
+                        }); //"Transfer Now"
+          	         }//1st success
+             }); //ajax ends
          });
     });
-}
+};
