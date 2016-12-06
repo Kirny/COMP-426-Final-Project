@@ -94,6 +94,12 @@
     </div>
  </div>
  <br>
+ <div id="transfer-line">
+    <span> + &nbsp; </span>
+    <input id="transfer-amt" type="text">
+ </div>
+ <br>
+ <br>
  <div>
     <button id="confirm"> Transfer Now! </button>
  </div>

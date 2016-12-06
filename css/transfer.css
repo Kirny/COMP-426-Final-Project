@@ -154,3 +154,18 @@ h1{
 .selected{
     background-color: #6495ED;
 }
+
+#transfer-line{
+    display: inline-block;
+    float: right;
+    margin-right: 120px;
+}
+
+#transfer-line span{
+    font-size: 24px;
+}
+
+#transfer-amt{
+    border: 2px solid red;
+    border-radius: 4px;
+}

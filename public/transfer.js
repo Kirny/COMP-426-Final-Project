@@ -1,13 +1,6 @@
 $(document).ready(function () {
+    $('#transfer-line').hide();
     fetch_info();
-    $('#from tr').on('click', function(){
-         $('#from tr').removeClass('selected');
-         $(this).addClass('selected');
-         $('#to tr').on('click', function(){
-            $('#to tr').removeClass('selected');
-            $(this).addClass('selected');
-         });
-    });
     $('#confirm').on('click', function(){
        location.href = "welcomepage.php";
     });
@@ -32,7 +25,22 @@ var fetch_info = function () {
               to.append("<tr id='to-" +index+ "'>" + "<td>" + "<h4> ACCOUNT #" + index + "</h4>" + "</td>"
                         + "<td>" + "$ " + data[1][i]["balance"] + "</td>" + "</tr>");
               }
+              selection();
 	         }
     });
 
   };
+
+var selection = function() {
+    $('#from tr').on('click', function(){
+         $('#from tr').removeClass('selected');
+         $(this).addClass('selected');
+         $('#to tr').on('click', function(){
+              $('#to tr').removeClass('selected');
+              $(this).addClass('selected');
+              $('#transfer-line').show();
+              var row_from = $('#from tr.selected').attr('id');
+              var row_to = $('#to tr.selected').attr('id');
+         });
+    });
+}
