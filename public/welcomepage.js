@@ -17,9 +17,10 @@ $(document).ready(function () {
     	});
     });
 
-    $('#account_add').on('click', function (e) {
+    $('#add_account').on('click', function (e) {
       $.ajax('../account.php',
     	       {type: 'POST',
+              data:{},
             	cache: false,
             	success: function (data) {
                   alert("Account Added!");
@@ -29,8 +30,6 @@ $(document).ready(function () {
             		  alert('Something wrong occured!');
               }
     	});
-
-      alert("i've been clicked!");
     });
 
      $('[data-toggle="tooltip"]').tooltip();
