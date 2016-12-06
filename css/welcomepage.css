@@ -99,6 +99,14 @@ ul.c-controls li a:hover {
     font-size: 1.25em;
 }
 
+.list-group-item {
+  cursor: pointer;
+}
+
+.list-group-item:hover {
+  color: rgb(123,175,212);
+}
+
 #profilepic{
     border: solid black;
     border-radius: 1px;
