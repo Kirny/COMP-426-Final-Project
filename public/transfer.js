@@ -106,6 +106,7 @@ var selection = function() {
                                                         alert(jqXHR.responseText);
                                           }});
                                         }
+                                        //w--
                                         //location.href = "welcomepage.php";
                         }); //"Transfer Now"
           	         }//1st success
