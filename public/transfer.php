@@ -78,13 +78,13 @@
         <div id="from-box">
           <h3>From </h3>
           <table id="from" class="acc-display" cellpadding="5" cellspacing="10">
-              <tr class="default-acc"> </tr>
+              <tr id="from-def" class="default-acc"> </tr>
           </table>
         </div>
         <div id="to-box">
           <h3>To </h3>
           <table id="to" class="acc-display" cellpadding="5" cellspacing="10">
-              <tr class="default-acc"> </tr>
+              <tr id="to-def" class="default-acc"> </tr>
           </table>
         </div>
         <br><br><br><br>
