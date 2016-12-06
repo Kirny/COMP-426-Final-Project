@@ -66,49 +66,48 @@ var selection = function() {
                                 dataType: "json",
                                 success: function(account_json, status, jqXHR){
                                     from_acc = new Account(account_json);
+                                    $.ajax("../account_ctrl.php/" + to_id,
+                                            {type: "GET",
+                                            dataType: "json",
+                                            success: function(account_json, status, jqXHR){
+                                                to_acc = new Account(account_json);
+                                                $('#confirm').on('click', function (){
+                                                    var amount = $('#transfer-amt').val();
+                                                    if(amount != ""){
+                                                      if(amount < 0){
+                                                        alert("Negative amount not allowed");
+                                                        return;
+                                                      }
+                                                      var from_bal = parseFloat(from_acc.balance) - parseFloat(amount);
+                                                      var to_bal = parseFloat(to_acc.balance) + parseFloat(amount);
+                                                      $.ajax("../account_ctrl.php/" + from_id,
+                                                           {type: "POST",
+                                                           dataType: "json",
+                                                           data: $(from_bal).serialize(),
+                                                           success: function(account_json, textStatus, jqXHR){
+                                                                console.log(account_json);
+                                                           },
+                                                           error: function(jqXHR, status, error){
+                                                              alert(jqXHR.responseText);
+                                                      }});
+                                                      $.ajax("../account_ctrl.php/" + to_id,
+                                                           {type: "POST",
+                                                           dataType: "json",
+                                                           data: $(to_bal).serialize(),
+                                                           success: function(account_json, textStatus, jqXHR){
+                                                                console.log(account_json);
+                                                           },
+                                                           error: function(jqXHR, status, error){
+                                                              alert(jqXHR.responseText);
+                                                      }});
+                                                    }
+                                                    //location.href = "welcomepage.php";
+                                                }); //"Transfer Now"
+                                            }
+                                    });
                                 }
                         });
-                        $.ajax("../account_ctrl.php/" + to_id,
-                                {type: "GET",
-                                dataType: "json",
-                                success: function(account_json, status, jqXHR){
-                                    to_acc = new Account(account_json);
-                                }
-                        });
-                        $('#confirm').on('click',
-                                      function (){
-                                        alert("Ive been clicked");
-                                        var amount = $('#transfer-amt').val();
-                                        if(!amount){
-                                          if(amount < 0){
-                                              alert("Negative amount not allowed");
-                                          }
-                                          var from_bal = from_acc.balance - amount;
-                                          var to_bal = to_acc.balance + amount;
-                                          $.ajax("../account_ctrl.php/" + from_id,
-                                                     {type: "POST",
-                                                     dataType: "json",
-                                                     data: from_bal.serialize(),
-                                                     success: function(account_json, textStatus, jqXHR){
-                                                        console.log(account_json);
-                                                     },
-                                                     error: function(jqXHR, status, error){
-                                                        alert(jqXHR.responseText);
-                                          }});
-                                          $.ajax("../account_ctrl.php/" + to_id,
-                                                     {type: "POST",
-                                                     dataType: "json",
-                                                     data: to_bal.serialize(),
-                                                     success: function(account_json, textStatus, jqXHR){
-                                                        console.log(account_json);
-                                                     },
-                                                     error: function(jqXHR, status, error){
-                                                        alert(jqXHR.responseText);
-                                          }});
-                                        }
-                                        //w--
-                                        //location.href = "welcomepage.php";
-                        }); //"Transfer Now"
+
           	         }//1st success
              }); //ajax ends
          });
