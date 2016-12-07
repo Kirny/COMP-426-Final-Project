@@ -145,4 +145,5 @@ ul.c-controls li a:hover {
   float:right;
   margin-top:.3cm;
   margin-right: 5em;
+  cursor:pointer;
 }
