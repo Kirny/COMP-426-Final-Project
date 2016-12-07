@@ -1,4 +1,6 @@
 var url_base = "https://wwwp.cs.unc.edu/Courses/comp426-f16/users/dyj/ProjectArea";
+var user_default_balance;
+var sender_default_balance;
 
 $(document).ready(function () {
     fetch_userInfo();
@@ -77,6 +79,27 @@ $(document).ready(function () {
     });
 
      $('[data-toggle="tooltip"]').tooltip();
+
+     $("#send-transaction").on("click", function(e) {
+       e.stopPropagation();
+       //alert(user_default_balance);
+       //alert(sender_default_balance);
+       /* This is the ajax call juts commented out for you
+       $.ajax('../whatever.php',
+     	       {type: 'POST',
+              data:{"sender-default-account-balance" : user_default_balance,
+                    "reciever-default-account-balance" : sender_default_balance},
+             	cache: false,
+             	success: function (data) {
+                   alert("Money Sent!");
+                   $.modal.close();
+               },
+             	error: function () {
+             		  alert('Insufficient Funds');
+               }
+     	});
+      */
+     });
 });
 
 var fetch_userInfo = function () {
@@ -96,6 +119,8 @@ var fetch_userInfo = function () {
 
               $('#default').append("<td>" + "<h4> DEFAULT </h4>" + "</td>"
                         + "<td>" + "$ " + data[0]["balance"] + "</td>");
+
+              user_default_balance = data[0]["balance"];
 
               $('#profilepic').attr("src", data[0]["profilepic_url"]);
 
@@ -118,4 +143,51 @@ var fetch_userInfo = function () {
               });
 	         }
          });
+    $.ajax("../contactlist_load.php",
+           {type: "GET",
+            dataType: "json",
+            cache: false,
+            success: function (data) {
+              var size = Object.keys(data).length;
+              var firstname;
+              var lastname;
+              var username;
+              var profilepic_url;
+              var default_acc_bal;
+
+              for(i = 0; i < size; i++) {
+                firstname = data[i].firstname;
+                lastname = data[i].lastname;
+                username = data[i].username;
+                profilepic_url = data[i].profilepic_url;
+                default_acc_bal = data[i].default_acc_bal;
+                $("#contact-list").append("<li class=\"list-group-item\" id=\"list" + i + "\">" +
+                  "<div class=\"col-xs-12 col-sm-3\">" +
+                    "<img src=" + "\"" + profilepic_url + "\"" + "alt=\"Scott Stevens\" class=\"img-responsive img-circle\" />" +
+                  "</div>" +
+                  "<div class=\"col-xs-12 col-sm-9\">" +
+                    "<span class=\"name\">" + firstname + " " + lastname + "</span><br/>" +
+                    "<small>" + username + "</small>" +
+                    "</div>" +
+                    "<div class=\"clearfix\"></div>" +
+                  "</li>");
+
+                  $('#list' + i).data("username", username);
+                  $('#list' + i).data("firstname", firstname);
+                  $('#list' + i).data("lastname", lastname);
+                  $('#list' + i).data("default_acc_bal", default_acc_bal);
+
+
+                  $('#list' + i).on('click', function(e) {
+                    $('#transaction-modal h3').text("Transaction to " + $.data(this, "firstname") + " " + $.data(this, "lastname"));
+                    sender_default_balance = $.data(this, "default_acc_bal");
+                    $('#transaction-modal').modal();
+                  });
+              }
+
+            },
+            error: function () {
+              alert("please reload page something went wrong!");
+            }
+          });
 };
