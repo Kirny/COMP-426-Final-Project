@@ -73,7 +73,11 @@ var selection = function() {
                                                 to_acc = new Account(account_json);
                                                 $('#confirm').off();
                                                 $('#confirm').on('click', function (){
-                                                    if(from_id == to_id){ return; }
+                                                    if(from_id == to_id){
+                                                        $('#from tr').removeClass('selected');
+                                                        $('#to tr').removeClass('selected');
+                                                        return;
+                                                    }
                                                     var amount = $('#transfer-amt').val();
                                                     if(amount != ""){
                                                       if(amount < 0){
@@ -107,10 +111,13 @@ var selection = function() {
                                                       }});
                                                       $('#from-def').empty();
                                                       $('#to-def').empty();
+                                                      $('#from tr').removeClass('selected');
+                                                      $('#to tr').removeClass('selected');
                                                       $('#from-def td').remove();
                                                       $('#from-def ~ tr').remove();
                                                       $('#to-def td').remove();
                                                       $('#to-def ~ tr').remove();
+                                                      $('#transfer-line').hide();
                                                       fetch_info();
                                                     }
                                                 }); //"Transfer Now"

@@ -102,7 +102,7 @@
  <br>
  <div id="button-line">
     <button id="confirm"> Transfer Now! </button>
-    <button id="cancel"> Cancel </button>
+    <button id="cancel"> Done </button>
  </div>
  <br><br><br><br>
  <footer class="container-fluid text-center navbar-fixed-bottom">
