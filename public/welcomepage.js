@@ -91,7 +91,7 @@ var fetch_userInfo = function () {
                 lastname = data[i].lastname;
                 username = data[i].username;
                 profilepic_url = data[i].profilepic_url;
-                $("#contact-list").append("<li class=\"list-group-item\">" +
+                var li = $("#contact-list").append("<li class=\"list-group-item\">" +
                   "<div class=\"col-xs-12 col-sm-3\">" +
                     "<img src=" + "\"" + profilepic_url + "\"" + "alt=\"Scott Stevens\" class=\"img-responsive img-circle\" />" +
                   "</div>" +
@@ -101,6 +101,8 @@ var fetch_userInfo = function () {
                     "</div>" +
                     "<div class=\"clearfix\"></div>" +
                   "</li>");
+
+                  li.data("username", username);
               }
 
             },

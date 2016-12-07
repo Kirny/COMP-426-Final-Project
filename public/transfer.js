@@ -38,10 +38,10 @@ var fetch_info = function () {
 };
 
 var selection = function() {
-    $('#from tr').on('click', function(){
+    $('#from tr').on('click', function(e){
          $('#from tr').removeClass('selected');
          $(this).addClass('selected');
-         $('#to tr').on('click', function(){
+         $('#to tr').on('click', function(e){
               $('#to tr').removeClass('selected');
               $(this).addClass('selected');
               $('#transfer-line').show();
