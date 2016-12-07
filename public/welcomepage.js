@@ -1,3 +1,5 @@
+var url_base = "https://wwwp.cs.unc.edu/Courses/comp426-f16/users/dyj/ProjectArea";
+
 $(document).ready(function () {
     fetch_userInfo();
 
@@ -16,64 +18,6 @@ $(document).ready(function () {
             		  alert('Incorrect Url or incorrect format!');}
     	});
     });
-
-    $('#add_account').on('click', function (e) {
-      $.ajax('../account.php',
-    	       {type: 'POST',
-              data:{},
-            	cache: false,
-            	success: function (data) {
-                  alert("Account Added!");
-                  fetch_userInfo();
-              },
-            	error: function () {
-            		  alert('Something wrong occured!');
-              }
-    	});
-    });
-
-     $('[data-toggle="tooltip"]').tooltip();
-});
-
-var fetch_userInfo = function () {
-    var fn = $('#fullname');
-    var un = $('#username');
-    var bal = $('#balance');
-    var acc = $('#accounts');
-    $.ajax("../welcomepage_load.php",
-	         {type: "GET",
-	         dataType: "json",
-           cache: false,
-	         success: function (data, textStatus, jqXHR) {
-              var one_acc = false;
-              fn.append("<div>" + data[0]["firstname"] + " " + data[0]["lastname"] + "</div>" + "<br>");
-              un.append("<div>" + data[0]["username"] + "</div>" + "<br>");
-              bal.append("<h4>"+ "$ " + data[0]["balance"] + "</h4>");
-
-              $('#default').append("<td>" + "<h4> DEFAULT </h4>" + "</td>"
-                        + "<td>" + "$ " + data[0]["balance"] + "</td>");
-
-              $('#profilepic').attr("src", data[0]["profilepic_url"]);
-
-              if(data[1] != undefined){
-                  for(i = 0; i < data[1].length; i++){
-                  var index = i + 1;
-                  acc.append("<tr>" + "<td>" + "<span id=\"X\" class=\"glyphicon glyphicon-remove\"></span>" + "<h4> ACCOUNT #" + index + "</h4>" + "</td>"
-                            + "<td>" + "$ " + data[1][i]["balance"] + "</td>" + "</tr>");
-                  }
-              }else{
-                one_acc = true;
-              }
-              $('#transfer').on('click', function(){
-                  if(!one_acc){
-                    location.href = "transfer.php";
-                  }
-                  else{
-                    alert("Cannot transfer with the default account only");
-                  }
-              });
-	         }
-         });
 
     $.ajax("../contactlist_load.php",
            {type: "GET",
@@ -107,7 +51,71 @@ var fetch_userInfo = function () {
 
             },
             error: function () {
-              alert("please reload page something went wrong!");
+              alert("please reload page, something went wrong!");
             }
-          });
+    });
+
+    $('#add_account').on('click', function (e) {
+      $.ajax(url_base + '/account_ctrl.php/',
+    	       {type: 'POST',
+              data:{},
+            	cache: false,
+            	success: function (data) {
+                  alert("Successfully created an account");
+                  $('#fullname div').remove();
+                  $('#username div').remove();
+                  $('#balance h4').remove();
+                  $('#default').empty();
+                  $('#default td').remove();
+                  $('#default ~ tr').remove();
+                  fetch_userInfo();
+              },
+            	error: function () {
+            		  alert('No more than 5 accounts (excluding DEFAULT) per user is allowed');
+              }
+    	});
+    });
+
+     $('[data-toggle="tooltip"]').tooltip();
+});
+
+var fetch_userInfo = function () {
+    var fn = $('#fullname');
+    var un = $('#username');
+    var bal = $('#balance');
+    var acc = $('#accounts');
+    $.ajax("../welcomepage_load.php",
+	         {type: "GET",
+	         dataType: "json",
+           cache: false,
+	         success: function (data, textStatus, jqXHR) {
+              var one_acc = false;
+              fn.append("<div>" + data[0]["firstname"] + " " + data[0]["lastname"] + "</div>");
+              un.append("<div>" + data[0]["username"] + "</div>");
+              bal.append("<h4>"+ "$ " + data[0]["balance"] + "</h4>");
+
+              $('#default').append("<td>" + "<h4> DEFAULT </h4>" + "</td>"
+                        + "<td>" + "$ " + data[0]["balance"] + "</td>");
+
+              $('#profilepic').attr("src", data[0]["profilepic_url"]);
+
+              if(data[1] != undefined){
+                  for(i = 0; i < data[1].length; i++){
+                  var index = i + 1;
+                  acc.append("<tr>" + "<td>" + "<span id=\"X\" class=\"glyphicon glyphicon-remove\"></span>" + "<h4> ACCOUNT #" + index + "</h4>" + "</td>"
+                            + "<td>" + "$ " + data[1][i]["balance"] + "</td>" + "</tr>");
+                  }
+              }else{
+                one_acc = true;
+              }
+              $('#transfer').on('click', function(){
+                  if(!one_acc){
+                    location.href = "transfer.php";
+                  }
+                  else{
+                    alert("Cannot transfer with the default account only");
+                  }
+              });
+	         }
+         });
 };

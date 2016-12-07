@@ -81,7 +81,9 @@
       </form>
     <br><br>
 	  <div id="fullname"> <strong>Name</strong> : </div>
+    <br>
     <div id="username"> <strong>Username: </strong></div>
+    <br>
 	  <div id="balance"> <strong>Default Account Balance : </strong></div>
     </div>
     <div class="col-sm-6">

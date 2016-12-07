@@ -1,10 +1,36 @@
 <?php
+session_start();
+$username = $_SESSION['username'];
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+include 'database.php';
 require_once('orm/Account.php');
 
 $path_components = explode('/', $_SERVER['PATH_INFO']);
+
+$conn = new mysqli($hn, $usr, $pw, $db);
+
+$user_id = 0;
+$sql = "SELECT id FROM User WHERE username = '$username'";
+$result = mysqli_query($conn, $sql);
+if($result->num_rows > 0) {
+  $row = $result->fetch_assoc();
+  $user_id = $row['id'];
+}else{
+  echo "Query returned with no data on " . $user_id . ".";
+}
+
+$acc_count = 0;
+$sql2 = "SELECT COUNT(*) FROM Account INNER JOIN User ON Account.user_id = User.id
+        WHERE User.username = '$username'";
+$result2 = mysqli_query($conn, $sql2);
+if($result2->num_rows > 0){
+  $row2 = $result2->fetch_row();
+  $acc_count = $row2[0] - 1;    //Exclude the default account
+}else{
+  echo "Query returned with no data on " . $acc_count . ".";
+}
 
 // Note that since extra path info starts with '/'
 // First element of path_components is always defined and always empty.
@@ -94,14 +120,19 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     // Creating a new Account item
 
     // Validate values
-    $balance = 0;
-    if (isset($_REQUEST['balance'])) {
+     $balance = floatval(0);
+     /* if (isset($_REQUEST['balance'])) {
       $balance = floatval($_REQUEST['balance']);
       if ($balance < 0) {
         	header("HTTP/1.0 400 Bad Request");
         	print("Priority value out of range");
         	exit();
       }
+    } */
+    if($acc_count >= 5){
+        header("HTTP/1.0 400 Bad Request");
+        print("No more than 5 accounts (excluding DEFAULT) per user is allowed");
+        exit();
     }
 
     // Create new Account via ORM
