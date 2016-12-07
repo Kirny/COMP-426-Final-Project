@@ -10,9 +10,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../css/jquery.modal.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script src="welcomepage.js"></script>
+  <script src="jquery.modal.js"></script>
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */
     .navbar {
@@ -70,6 +72,19 @@
     </div>
   </div>
 </nav>
+
+<!--
+<div id="transaction-modal" class="modal">
+  <input id="transaction-amt" type="number" length="6">
+  <button id="send-transaction"> Send! </button>
+</div>
+-->
+
+<form id="transaction-modal" class="modal">
+  <h3> </h3>
+  <input id="transaction-amt" type="number" length="6">
+  <button id="send-transaction"> Send! </button>
+</form>
 
 <div class="container-fluid text-center">
   <div class="row content">
@@ -132,22 +147,6 @@
                 </ul>
             </div>
 	</div>
-
-    <div id="cant-do-all-the-work-for-you" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="mySmallModalLabel">Ooops!!!</h4>
-                </div>
-                <div class="modal-body">
-                    <p>I am being lazy and do not want to program an "Add User" section into this snippet... So it looks like you'll have to do that for yourself.</p><br/>
-                    <p><strong>Sorry<br/>
-                    ~ Mouse0270</strong></p>
-                </div>
-            </div>
-        </div>
-    </div>
 
 	<!-- End of contact stuff -->
   </div>
