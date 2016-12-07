@@ -33,7 +33,7 @@ var fetch_info = function () {
               }
               selection();
 	         }
-           });
+    });
 
 };
 
@@ -105,8 +105,14 @@ var selection = function() {
                                                            error: function(jqXHR, status, error){
                                                                 alert(jqXHR.responseText);
                                                       }});
+                                                      $('#from-def').empty();
+                                                      $('#to-def').empty();
+                                                      $('#from-def td').remove();
+                                                      $('#from-def ~ tr').remove();
+                                                      $('#to-def td').remove();
+                                                      $('#to-def ~ tr').remove();
+                                                      fetch_info();
                                                     }
-                                                    location.href = "welcomepage.php";
                                                 }); //"Transfer Now"
                                             }
                                     });
