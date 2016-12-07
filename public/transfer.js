@@ -41,6 +41,7 @@ var selection = function() {
     $('#from tr').on('click', function(){
          $('#from tr').removeClass('selected');
          $(this).addClass('selected');
+         $('#to tr').off();
          $('#to tr').on('click', function(){
               $('#to tr').removeClass('selected');
               $(this).addClass('selected');
@@ -70,7 +71,9 @@ var selection = function() {
                                             dataType: "json",
                                             success: function(account_json, status, jqXHR){
                                                 to_acc = new Account(account_json);
+                                                $('#confirm').off();
                                                 $('#confirm').on('click', function (){
+                                                    if(from_id == to_id){ return; }
                                                     var amount = $('#transfer-amt').val();
                                                     if(amount != ""){
                                                       if(amount < 0){
@@ -93,7 +96,8 @@ var selection = function() {
                                                            {type: "POST",
                                                            dataType: "json",
                                                            data: { 'id': to_id,
-                                                                  'balance': parseFloat(to_acc.balance) + parseFloat(amount)},
+                                                                  'balance': parseFloat(amount) > from_acc.balance ? to_acc.balance
+                                                                   : parseFloat(to_acc.balance) + parseFloat(amount)},
                                                            success: function(account_json, textStatus, jqXHR){
                                                                 to_acc.balance += parseFloat(amount);
                                                                 console.log(account_json);
