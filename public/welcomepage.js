@@ -58,7 +58,7 @@ var fetch_userInfo = function () {
               if(data[1] != undefined){
                   for(i = 0; i < data[1].length; i++){
                   var index = i + 1;
-                  acc.append("<tr>" + "<td>" + "<h4> ACCOUNT #" + index + "</h4>" + "</td>"
+                  acc.append("<tr>" + "<td>" + "<span id=\"X\" class=\"glyphicon glyphicon-remove\"></span>" + "<h4> ACCOUNT #" + index + "</h4>" + "</td>"
                             + "<td>" + "$ " + data[1][i]["balance"] + "</td>" + "</tr>");
                   }
               }else{
