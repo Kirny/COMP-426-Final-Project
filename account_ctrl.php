@@ -1,8 +1,7 @@
 <?php
-
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-//session_start();
+
 require_once('orm/Account.php');
 
 $path_components = explode('/', $_SERVER['PATH_INFO']);
@@ -73,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     // Validate values
     $new_balance = false;
     if (isset($_REQUEST['balance'])) {
-      $new_balance = intval($_REQUEST['balance']);
+      $new_balance = floatval($_REQUEST['balance']);
       if ($new_balance < 0) {
     	header("HTTP/1.0 400 Bad Request");
     	print("Cannot have a negative balance.");
@@ -97,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
     // Validate values
     $balance = 0;
     if (isset($_REQUEST['balance'])) {
-      $balance = intval($_REQUEST['balance']);
+      $balance = floatval($_REQUEST['balance']);
       if ($balance < 0) {
         	header("HTTP/1.0 400 Bad Request");
         	print("Priority value out of range");

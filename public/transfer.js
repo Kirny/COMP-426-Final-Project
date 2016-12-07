@@ -60,7 +60,6 @@ var selection = function() {
                                   data[0]["default_acc"] : data[1][from_index - 1]["id"];
                         var to_id = to_index == 0 ?
                                 data[0]["default_acc"] : data[1][to_index - 1]["id"];
-
                         $.ajax("../account_ctrl.php/" + from_id,
                                 {type: "GET",
                                 dataType: "json",
@@ -78,27 +77,29 @@ var selection = function() {
                                                         alert("Negative amount not allowed");
                                                         return;
                                                       }
-                                                      var from_bal = parseFloat(from_acc.balance) - parseFloat(amount);
-                                                      var to_bal = parseFloat(to_acc.balance) + parseFloat(amount);
                                                       $.ajax("../account_ctrl.php/" + from_id,
                                                            {type: "POST",
                                                            dataType: "json",
-                                                           data: $(from_bal).serialize(),
+                                                           data: {'id': from_id,
+                                                                  'balance': parseFloat(from_acc.balance) - parseFloat(amount)},
                                                            success: function(account_json, textStatus, jqXHR){
+                                                                from_acc.balance -= parseFloat(amount);
                                                                 console.log(account_json);
                                                            },
                                                            error: function(jqXHR, status, error){
-                                                              alert(jqXHR.responseText);
+                                                                alert(jqXHR.responseText);
                                                       }});
                                                       $.ajax("../account_ctrl.php/" + to_id,
                                                            {type: "POST",
                                                            dataType: "json",
-                                                           data: $(to_bal).serialize(),
+                                                           data: { 'id': to_id,
+                                                                  'balance': parseFloat(to_acc.balance) + parseFloat(amount)},
                                                            success: function(account_json, textStatus, jqXHR){
+                                                                to_acc.balance += parseFloat(amount);
                                                                 console.log(account_json);
                                                            },
                                                            error: function(jqXHR, status, error){
-                                                              alert(jqXHR.responseText);
+                                                                alert(jqXHR.responseText);
                                                       }});
                                                     }
                                                     //location.href = "welcomepage.php";
