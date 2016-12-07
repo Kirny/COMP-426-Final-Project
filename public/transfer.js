@@ -106,7 +106,7 @@ var selection = function() {
                                                                 alert(jqXHR.responseText);
                                                       }});
                                                     }
-                                                    //location.href = "welcomepage.php";
+                                                    location.href = "welcomepage.php";
                                                 }); //"Transfer Now"
                                             }
                                     });
