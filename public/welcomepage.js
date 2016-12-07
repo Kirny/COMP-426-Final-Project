@@ -58,7 +58,7 @@ var fetch_userInfo = function () {
               if(data[1] != undefined){
                   for(i = 0; i < data[1].length; i++){
                   var index = i + 1;
-                  acc.append("<tr>" + "<td>" + "<h4> ACCOUNT #" + index + "</h4>" + "</td>"
+                  acc.append("<tr>" + "<td>" + "<span id=\"X\" class=\"glyphicon glyphicon-remove\"></span>" + "<h4> ACCOUNT #" + index + "</h4>" + "</td>"
                             + "<td>" + "$ " + data[1][i]["balance"] + "</td>" + "</tr>");
                   }
               }else{
@@ -91,7 +91,7 @@ var fetch_userInfo = function () {
                 lastname = data[i].lastname;
                 username = data[i].username;
                 profilepic_url = data[i].profilepic_url;
-                $("#contact-list").append("<li class=\"list-group-item\">" +
+                var li = $("#contact-list").append("<li class=\"list-group-item\">" +
                   "<div class=\"col-xs-12 col-sm-3\">" +
                     "<img src=" + "\"" + profilepic_url + "\"" + "alt=\"Scott Stevens\" class=\"img-responsive img-circle\" />" +
                   "</div>" +
@@ -101,6 +101,8 @@ var fetch_userInfo = function () {
                     "</div>" +
                     "<div class=\"clearfix\"></div>" +
                   "</li>");
+
+                  li.data("username", username);
               }
 
             },

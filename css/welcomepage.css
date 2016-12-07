@@ -139,6 +139,9 @@ ul.c-controls li a:hover {
 
 #transfer, #add_account{
     background-color: azure;
-    float: right;
-    margin-right: 55px;
+}
+
+#X {
+  float:right;
+  margin-top:.3cm;
 }
