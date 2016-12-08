@@ -129,6 +129,7 @@ var fetch_userInfo = function () {
                   }
                   else{
                     alert("Cannot transfer with the default account only");
+                    return;
                   }
               });
 	         }
