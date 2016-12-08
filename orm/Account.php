@@ -87,7 +87,7 @@ class Account{
     return $result;
   }
 
-  private function delete(){
+  public function delete(){
     $mysqli = Account::connect();
     $mysqli->query("delete from Account where id = " . $this->id);
   }

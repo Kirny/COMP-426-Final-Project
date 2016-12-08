@@ -101,15 +101,13 @@ var fetch_userInfo = function () {
               }else{
                 one_acc = true;
               }
-              $('span').on('click', function(e){
+              $("[id^=X]").on('click', function(e){
                    var acc_id = $.data(this, "acc_id");
-                   alert("acc_id is " + acc_id);
                    $.ajax(url_base + '/account_ctrl.php/' + acc_id + '?delete',
                          {type: 'GET',
                           data: {},
                           cache: false,
                           success: function() {
-                              alert("X clicked");
                               $('#fullname div').remove();
                               $('#username div').remove();
                               $('#balance h4').remove();
