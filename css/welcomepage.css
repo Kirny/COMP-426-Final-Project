@@ -140,11 +140,11 @@ ul.c-controls li a:hover {
     background-color: azure;
 }
 
-#X {
-  float:right;
-  margin-top:.3cm;
-  margin-right: 5em;
-  cursor:pointer;
+span.X {
+    float:right;
+    margin-top:.3cm;
+    margin-right: 5em;
+    cursor:pointer;
 }
 
 #transaction-modal {

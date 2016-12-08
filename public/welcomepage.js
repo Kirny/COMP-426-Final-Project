@@ -34,12 +34,37 @@ $(document).ready(function () {
                   $('#default').empty();
                   $('#default td').remove();
                   $('#default ~ tr').remove();
+                  $('#contact-list').empty();
+                  $('#contact-list li').remove();
                   fetch_userInfo();
               },
             	error: function () {
             		  alert('No more than 5 accounts (excluding DEFAULT) per user is allowed');
               }
     	});
+    });
+
+    $('span.X').on('click', function(e){
+         var acc_id = $.data(this, "acc_id");
+         $.ajax(url_base + '/account_ctrl.php/' + acc_id + '?delete',
+               {type: 'GET',
+                data: {},
+                cache: false,
+                success: function() {
+                    $('#fullname div').remove();
+                    $('#username div').remove();
+                    $('#balance h4').remove();
+                    $('#default').empty();
+                    $('#default td').remove();
+                    $('#default ~ tr').remove();
+                    $('#contact-list').empty();
+                    $('#contact-list li').remove();
+                    fetch_userInfo();
+                },
+                error: function() {
+                     alert("Delete failure");
+                }
+         });
     });
 
      $('[data-toggle="tooltip"]').tooltip();
@@ -64,7 +89,7 @@ $(document).ready(function () {
      	});
       */
      });
-});
+}); //$(document).ready ends
 
 var fetch_userInfo = function () {
     var fn = $('#fullname');
@@ -91,9 +116,10 @@ var fetch_userInfo = function () {
               if(data[1] != undefined){
                   for(i = 0; i < data[1].length; i++){
                   var index = i + 1;
-                  acc.append("<tr id='acc" + index + "'>"  + "<td>" + "<span id=\"X\" class=\"glyphicon glyphicon-remove\"></span>"
+                  acc.append("<tr id='row" + index + "'>"  + "<td>" + "<span id='X" + index + "' class='X'></span>"
                             + "<h4> ACCOUNT #" + index + "</h4>" + "</td>"
                             + "<td>" + "$ " + data[1][i]["balance"] + "</td>" + "</tr>");
+                  $('X' + index).data("acc_id", data[1][i]["id"]);
                   }
               }else{
                 one_acc = true;

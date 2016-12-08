@@ -25,7 +25,7 @@ if($result->num_rows > 0) {
 }
 
 //gets the other accounts besides the default one
-$sql2 = "SELECT balance FROM Account INNER JOIN User ON User.id = Account.user_id
+$sql2 = "SELECT Account.id, balance FROM Account INNER JOIN User ON User.id = Account.user_id
         WHERE User.username = '$username' AND User.default_acc != Account.id
         ORDER BY Account.id ASC";
 
