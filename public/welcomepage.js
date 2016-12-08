@@ -44,31 +44,6 @@ $(document).ready(function () {
     	});
     });
 
-    $('.glyphicon glyphicon-remove').on('click', function(e){
-         alert("span clicked");
-         var acc_id = $.data(this, "acc_id");
-         $.ajax(url_base + '/account_ctrl.php/' + acc_id + '?delete',
-               {type: 'GET',
-                data: {},
-                cache: false,
-                success: function() {
-                    alert("X clicked");
-                    $('#fullname div').remove();
-                    $('#username div').remove();
-                    $('#balance h4').remove();
-                    $('#default').empty();
-                    $('#default td').remove();
-                    $('#default ~ tr').remove();
-                    $('#contact-list').empty();
-                    $('#contact-list li').remove();
-                    fetch_userInfo();
-                },
-                error: function() {
-                     alert("Delete failure");
-                }
-         });
-    });
-
      $('[data-toggle="tooltip"]').tooltip();
 
      $("#send-transaction").on("click", function(e) {
@@ -121,11 +96,35 @@ var fetch_userInfo = function () {
                   acc.append("<tr id='row" + index + "'>"  + "<td>" + "<span id='X" + index + "' class='glyphicon glyphicon-remove'></span>"
                             + "<h4> ACCOUNT #" + index + "</h4>" + "</td>"
                             + "<td>" + "$ " + data[1][i]["balance"] + "</td>" + "</tr>");
-                  $('X' + index).data("acc_id", data[1][i]["id"]);
+                  $('X' + index).data("acc_id", data[1][i]["accountID"]);
                   }
               }else{
                 one_acc = true;
               }
+              $('span').on('click', function(e){
+                   var acc_id = $.data(this, "acc_id");
+                   alert("acc_id is " + acc_id);
+                   $.ajax(url_base + '/account_ctrl.php/' + acc_id + '?delete',
+                         {type: 'GET',
+                          data: {},
+                          cache: false,
+                          success: function() {
+                              alert("X clicked");
+                              $('#fullname div').remove();
+                              $('#username div').remove();
+                              $('#balance h4').remove();
+                              $('#default').empty();
+                              $('#default td').remove();
+                              $('#default ~ tr').remove();
+                              $('#contact-list').empty();
+                              $('#contact-list li').remove();
+                              fetch_userInfo();
+                          },
+                          error: function() {
+                               alert("Delete failure");
+                          }
+                   });
+              });
               $('#transfer').on('click', function(){
                   if(!one_acc){
                     location.href = "transfer.php";
@@ -136,6 +135,8 @@ var fetch_userInfo = function () {
               });
 	         }
          });
+
+
     $.ajax("../contactlist_load.php",
            {type: "GET",
             dataType: "json",
