@@ -89,7 +89,6 @@ var fetch_userInfo = function () {
               user_default_balance = data[0]["balance"];
 
               $('#profilepic').attr("src", data[0]["profilepic_url"]);
-
               if(data[1] != undefined){
                   for(i = 0; i < data[1].length; i++){
                   var index = i + 1;
@@ -98,9 +97,8 @@ var fetch_userInfo = function () {
                             + "<td>" + "$ " + data[1][i]["balance"] + "</td>" + "</tr>");
                   $('#X' + index).data("acc_id", data[1][i]["accountID"]);
                   }
-              }else{
-                one_acc = true;
               }
+              one_acc = (data[2] == 1);
               $("[id^=X]").on('click', function(e){
                    var acc_id = $.data(this, "acc_id");
                    $.ajax(url_base + '/account_ctrl.php/' + acc_id + '?delete',

@@ -40,6 +40,15 @@ if($result2 = mysqli_query($conn, $sql2)) {
   echo "No accounts other than the default";
 }
 
+$data[2] = 0; //stores the number of accounts
+$sql3 = "SELECT COUNT(*) FROM Account INNER JOIN User ON Account.user_id = User.id
+        WHERE User.username = '$username'";
+$result3 = mysqli_query($conn, $sql3);
+if($result3->num_rows > 0){
+  $row3 = $result3->fetch_row();
+  $data[2] = $row3[0];
+}
+
 header('Content-type: application/json');
 echo json_encode($data);
 
