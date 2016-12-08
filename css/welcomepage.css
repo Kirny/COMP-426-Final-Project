@@ -140,7 +140,7 @@ ul.c-controls li a:hover {
     background-color: azure;
 }
 
-span.X {
+#X1, #X2, #X3, #X4, #X5 {
     float:right;
     margin-top:.3cm;
     margin-right: 5em;

@@ -44,13 +44,15 @@ $(document).ready(function () {
     	});
     });
 
-    $('span.X').on('click', function(e){
+    $('.glyphicon glyphicon-remove').on('click', function(e){
+         alert("span clicked");
          var acc_id = $.data(this, "acc_id");
          $.ajax(url_base + '/account_ctrl.php/' + acc_id + '?delete',
                {type: 'GET',
                 data: {},
                 cache: false,
                 success: function() {
+                    alert("X clicked");
                     $('#fullname div').remove();
                     $('#username div').remove();
                     $('#balance h4').remove();
@@ -116,7 +118,7 @@ var fetch_userInfo = function () {
               if(data[1] != undefined){
                   for(i = 0; i < data[1].length; i++){
                   var index = i + 1;
-                  acc.append("<tr id='row" + index + "'>"  + "<td>" + "<span id='X" + index + "' class='X'></span>"
+                  acc.append("<tr id='row" + index + "'>"  + "<td>" + "<span id='X" + index + "' class='glyphicon glyphicon-remove'></span>"
                             + "<h4> ACCOUNT #" + index + "</h4>" + "</td>"
                             + "<td>" + "$ " + data[1][i]["balance"] + "</td>" + "</tr>");
                   $('X' + index).data("acc_id", data[1][i]["id"]);
