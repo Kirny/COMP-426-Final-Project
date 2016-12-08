@@ -124,7 +124,6 @@ var fetch_userInfo = function () {
               $('#transfer').on('click', function(){
                   one_acc = (data[2] == 1);
                   if(!one_acc){
-                    alert("Right b4 transfer");
                     location.href = "transfer.php";
                   }
                   else{
