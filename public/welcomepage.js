@@ -1,6 +1,6 @@
 var url_base = "https://wwwp.cs.unc.edu/Courses/comp426-f16/users/dyj/ProjectArea";
 var user_default_balance;
-var sender_default_balance;
+var receiver_default_balance;
 
 $(document).ready(function () {
     fetch_userInfo();
@@ -19,42 +19,6 @@ $(document).ready(function () {
             	error: function () {
             		  alert('Incorrect Url or incorrect format!');}
     	});
-    });
-
-    $.ajax("../contactlist_load.php",
-           {type: "GET",
-            dataType: "json",
-            cache: false,
-            success: function (data) {
-              var size = Object.keys(data).length;
-              var firstname;
-              var lastname;
-              var username;
-              var profilepic_url;
-
-              for(i = 0; i < size; i++) {
-                firstname = data[i].firstname;
-                lastname = data[i].lastname;
-                username = data[i].username;
-                profilepic_url = data[i].profilepic_url;
-                var li = $("#contact-list").append("<li class=\"list-group-item\">" +
-                  "<div class=\"col-xs-12 col-sm-3\">" +
-                    "<img src=" + "\"" + profilepic_url + "\"" + "alt=\"Scott Stevens\" class=\"img-responsive img-circle\" />" +
-                  "</div>" +
-                  "<div class=\"col-xs-12 col-sm-9\">" +
-                    "<span class=\"name\">" + firstname + " " + lastname + "</span><br/>" +
-                    "<small>" + username + "</small>" +
-                    "</div>" +
-                    "<div class=\"clearfix\"></div>" +
-                  "</li>");
-
-                  li.data("username", username);
-              }
-
-            },
-            error: function () {
-              alert("please reload page, something went wrong!");
-            }
     });
 
     $('#add_account').on('click', function (e) {
@@ -83,12 +47,12 @@ $(document).ready(function () {
      $("#send-transaction").on("click", function(e) {
        e.stopPropagation();
        //alert(user_default_balance);
-       //alert(sender_default_balance);
+       //alert(receiver_default_balance);
        /* This is the ajax call juts commented out for you
        $.ajax('../whatever.php',
      	       {type: 'POST',
-              data:{"sender-default-account-balance" : user_default_balance,
-                    "reciever-default-account-balance" : sender_default_balance},
+              data:{"user-default-account-balance" : user_default_balance,
+                    "reciever-default-account-balance" : receiver_default_balance},
              	cache: false,
              	success: function (data) {
                    alert("Money Sent!");
@@ -127,7 +91,8 @@ var fetch_userInfo = function () {
               if(data[1] != undefined){
                   for(i = 0; i < data[1].length; i++){
                   var index = i + 1;
-                  acc.append("<tr>" + "<td>" + "<span id=\"X\" class=\"glyphicon glyphicon-remove\"></span>" + "<h4> ACCOUNT #" + index + "</h4>" + "</td>"
+                  acc.append("<tr id='acc" + index + "'>"  + "<td>" + "<span id=\"X\" class=\"glyphicon glyphicon-remove\"></span>"
+                            + "<h4> ACCOUNT #" + index + "</h4>" + "</td>"
                             + "<td>" + "$ " + data[1][i]["balance"] + "</td>" + "</tr>");
                   }
               }else{
@@ -180,7 +145,7 @@ var fetch_userInfo = function () {
 
                   $('#list' + i).on('click', function(e) {
                     $('#transaction-modal h3').text("Transaction to " + $.data(this, "firstname") + " " + $.data(this, "lastname"));
-                    sender_default_balance = $.data(this, "default_acc_bal");
+                    receiver_default_balance = $.data(this, "default_acc_bal");
                     $('#transaction-modal').modal();
                   });
               }
@@ -189,5 +154,5 @@ var fetch_userInfo = function () {
             error: function () {
               alert("please reload page something went wrong!");
             }
-          });
+      });
 };
