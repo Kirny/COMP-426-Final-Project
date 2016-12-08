@@ -96,7 +96,7 @@ var fetch_userInfo = function () {
                   acc.append("<tr id='row" + index + "'>"  + "<td>" + "<span id='X" + index + "' class='glyphicon glyphicon-remove'></span>"
                             + "<h4> ACCOUNT #" + index + "</h4>" + "</td>"
                             + "<td>" + "$ " + data[1][i]["balance"] + "</td>" + "</tr>");
-                  $('X' + index).data("acc_id", data[1][i]["accountID"]);
+                  $('#X' + index).data("acc_id", data[1][i]["accountID"]);
                   }
               }else{
                 one_acc = true;
