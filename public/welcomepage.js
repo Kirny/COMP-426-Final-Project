@@ -98,7 +98,6 @@ var fetch_userInfo = function () {
                   $('#X' + index).data("acc_id", data[1][i]["accountID"]);
                   }
               }
-              one_acc = (data[2] == 1);
               $("[id^=X]").on('click', function(e){
                    var acc_id = $.data(this, "acc_id");
                    $.ajax(url_base + '/account_ctrl.php/' + acc_id + '?delete',
@@ -121,8 +120,11 @@ var fetch_userInfo = function () {
                           }
                    });
               });
+              $('#transfer').off();
               $('#transfer').on('click', function(){
+                  one_acc = (data[2] == 1);
                   if(!one_acc){
+                    alert("Right b4 transfer");
                     location.href = "transfer.php";
                   }
                   else{
