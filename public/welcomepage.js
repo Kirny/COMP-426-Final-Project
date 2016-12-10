@@ -1,8 +1,8 @@
 var url_base = "https://wwwp.cs.unc.edu/Courses/comp426-f16/users/dyj/ProjectArea";
 var user_default_balance;
 var receiver_default_balance;
-var user_id;
-var receiver_id;
+var user_def_id;
+var receiver_def_id;
 
 $(document).ready(function () {
     fetch_userInfo();
@@ -58,33 +58,42 @@ $(document).ready(function () {
            }
            alert(user_default_balance);
            alert(receiver_default_balance);
-           $.ajax(url_base + '/account_ctrl.php/' + user_id,
+           $.ajax(url_base + '/account_ctrl.php/' + user_def_id,
                   {type: 'POST',
-                   data:{'id': user_id,
+                   dataType: "json",
+                   data:{'id': user_def_id,
                          'balance': user_default_balance - parseFloat(amount)},
                    cache: false,
                    success: function (data) {
-                            alert("Money Sent!");
-                            $.modal.close();
+
                    },
-                   error: function () {
-                            alert('Transaction unsuccessful: send failure');
-                            return;
+                   error: function(jqXHR, status, error){
+                          alert(jqXHR.responseText);
+                          return;
                    }
            });
-           $.ajax(url_base + '/account_ctrl.php/' + receiver_id,
+           $.ajax(url_base + '/account_ctrl.php/' + receiver_def_id,
                   {type: 'POST',
-                   data:{'id': receiver_id,
+                   dataType: "json",
+                   data:{'id': receiver_def_id,
                          'balance': parseFloat(amount) > user_default_balance ? receiver_default_balance
                           : receiver_default_balance + parseFloat(amount)},
                    cache: false,
                    success: function (data) {
-                            alert("Money Received!");
+                            alert("Transaction successful");
                             $.modal.close();
+                            $('#fullname div').remove();
+                            $('#username div').remove();
+                            $('#balance h4').remove();
+                            $('#default').empty();
+                            $('#default td').remove();
+                            $('#default ~ tr').remove();
+                            $('#contact-list').empty();
+                            $('#contact-list li').remove();
+                            fetch_userInfo();
                    },
-                   error: function () {
-                            alert('Transaction unsuccessful: receive failure');
-                            return;
+                   error: function(jqXHR, status, error){
+                        return;
                    }
            });
          }
@@ -110,7 +119,7 @@ var fetch_userInfo = function () {
                         + "<td>" + "$ " + data[0]["balance"] + "</td>");
 
               user_default_balance = data[0]["balance"];
-              user_id = data[0]["default_acc"];
+              user_def_id = data[0]["default_acc"];
 
               $('#profilepic').attr("src", data[0]["profilepic_url"]);
               if(data[1] != undefined){
@@ -200,9 +209,9 @@ var fetch_userInfo = function () {
                   $('#list' + i).on('click', function(e) {
                     $('#transaction-modal h3').text("Transaction to " + $.data(this, "firstname") + " " + $.data(this, "lastname"));
                     receiver_default_balance = $.data(this, "default_acc_bal");
-                    receiver_id = $.data(this, "default_acc_id");
-                    alert(receiver_id);
-                    alert(user_id);
+                    receiver_def_id = $.data(this, "default_acc_id");
+                    alert(receiver_def_id);
+                    alert(user_def_id);
                     $('#transaction-modal').modal();
                   });
               }
