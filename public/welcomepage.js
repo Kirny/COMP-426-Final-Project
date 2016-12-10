@@ -110,7 +110,7 @@ var fetch_userInfo = function () {
                         + "<td>" + "$ " + data[0]["balance"] + "</td>");
 
               user_default_balance = data[0]["balance"];
-              user_id = data[0]["id"];
+              user_id = data[0]["default_acc"];
 
               $('#profilepic').attr("src", data[0]["profilepic_url"]);
               if(data[1] != undefined){
@@ -178,7 +178,7 @@ var fetch_userInfo = function () {
                 username = data[i].username;
                 profilepic_url = data[i].profilepic_url;
                 default_acc_bal = data[i].default_acc_bal;
-                user_id = data[i].id;
+                default_acc_id = data[i].default_acc_id;
                 $("#contact-list").append("<li class=\"list-group-item\" id=\"list" + i + "\">" +
                   "<div class=\"col-xs-12 col-sm-3\">" +
                     "<img src=" + "\"" + profilepic_url + "\"" + "alt=\"Scott Stevens\" class=\"img-responsive img-circle\" />" +
@@ -194,13 +194,15 @@ var fetch_userInfo = function () {
                   $('#list' + i).data("firstname", firstname);
                   $('#list' + i).data("lastname", lastname);
                   $('#list' + i).data("default_acc_bal", default_acc_bal);
-                  $('#list' + i).data("user_id", user_id);
+                  $('#list' + i).data("default_acc_id", default_acc_id);
 
 
                   $('#list' + i).on('click', function(e) {
                     $('#transaction-modal h3').text("Transaction to " + $.data(this, "firstname") + " " + $.data(this, "lastname"));
                     receiver_default_balance = $.data(this, "default_acc_bal");
-                    receiver_id = $.data(this, "user_id");
+                    receiver_id = $.data(this, "default_acc_id");
+                    alert(receiver_id);
+                    alert(user_id);
                     $('#transaction-modal').modal();
                   });
               }

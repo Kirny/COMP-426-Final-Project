@@ -24,21 +24,21 @@ error_reporting(E_ALL);
     while($row = $result->fetch_assoc()) {
       if($remainingrows == 1) {
         print("{");
-        print("\"id\":" . $row["id"] . ", \"firstname\":" . "\"" . $row["firstname"] . "\"," . " \"lastname\":" . "\"" . $row["lastname"] . "\"," . " \"username\":" . "\"" . $row["username"] . "\"," . " \"profilepic_url\":" . "\"". $row["profilepic_url"] . "\"");
+        print("\"firstname\":" . "\"" . $row["firstname"] . "\"," . " \"lastname\":" . "\"" . $row["lastname"] . "\"," . " \"username\":" . "\"" . $row["username"] . "\"," . " \"profilepic_url\":" . "\"". $row["profilepic_url"] . "\"");
         $default_acc = $row["default_acc"];
         $sql = "SELECT balance FROM Account WHERE id=$default_acc";
         $result2 = $conn->query($sql);
         $row2 = $result2->fetch_assoc();
-        print(", \"default_acc_bal\":" . $row2["balance"]);
+        print(", \"default_acc_bal\":" . $row2["balance"] . ", \"default_acc_id\":" . $default_acc);
         print("}" . "\n");
       } else {
         print("{");
-        print("\"id\":" . $row["id"] . ",\"firstname\":" . "\"" . $row["firstname"] . "\"," . " \"lastname\":" . "\"" . $row["lastname"] . "\"," . " \"username\":" . "\"" . $row["username"] . "\"," . " \"profilepic_url\":" . "\"" . $row["profilepic_url"] . "\"");
+        print("\"firstname\":" . "\"" . $row["firstname"] . "\"," . " \"lastname\":" . "\"" . $row["lastname"] . "\"," . " \"username\":" . "\"" . $row["username"] . "\"," . " \"profilepic_url\":" . "\"" . $row["profilepic_url"] . "\"");
         $default_acc = $row["default_acc"];
         $sql = "SELECT balance FROM Account WHERE id=$default_acc";
         $result2 = $conn->query($sql);
         $row2 = $result2->fetch_assoc();
-        print(", \"default_acc_bal\":" . $row2["balance"]);
+        print(", \"default_acc_bal\":" . $row2["balance"] . ", \"default_acc_id\":" . $default_acc);
         print("}," . "\n");
         $remainingrows -= 1;
       }
