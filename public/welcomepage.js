@@ -47,24 +47,30 @@ $(document).ready(function () {
      $('[data-toggle="tooltip"]').tooltip();
 
      $("#send-transaction").on("click", function(e) {
-       e.stopPropagation();
-       //alert(user_default_balance);
-       //alert(receiver_default_balance);
-       /* This is the ajax call juts commented out for you
-       $.ajax('../whatever.php',
-     	       {type: 'POST',
-              data:{"user-default-account-balance" : user_default_balance,
-                    "reciever-default-account-balance" : receiver_default_balance},
-             	cache: false,
-             	success: function (data) {
-                   alert("Money Sent!");
-                   $.modal.close();
-               },
-             	error: function () {
-             		  alert('Insufficient Funds');
-               }
-     	});
-      */
+         e.stopPropagation();
+         var amount = $('#transaction-amt').val();
+         if(amount != ""){
+           if(amount < 0){
+               alert("Negative amount not allowed!");
+               return;
+           }
+           alert(user_default_balance);
+           alert(receiver_default_balance);
+           $.ajax(url_base + '/account_ctrl.php/' +,
+                  {type: 'POST',
+                   data:{"user-default-account-balance" : user_default_balance,
+                              "reciever-default-account-balance" : receiver_default_balance},
+                   cache: false,
+                   success: function (data) {
+                             alert("Money Sent!");
+                             $.modal.close();
+                   },
+                   error: function () {
+                             alert('Transaction unsuccessful');
+                             return;
+                   }
+           });
+         }
      });
 }); //$(document).ready ends
 
