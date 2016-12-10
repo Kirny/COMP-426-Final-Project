@@ -1,6 +1,8 @@
 var url_base = "https://wwwp.cs.unc.edu/Courses/comp426-f16/users/dyj/ProjectArea";
 var user_default_balance;
 var receiver_default_balance;
+var user_ID;
+var receiver_ID;
 
 $(document).ready(function () {
     fetch_userInfo();
@@ -56,6 +58,7 @@ $(document).ready(function () {
            }
            alert(user_default_balance);
            alert(receiver_default_balance);
+           /*
            $.ajax(url_base + '/account_ctrl.php/' +,
                   {type: 'POST',
                    data:{"user-default-account-balance" : user_default_balance,
@@ -70,6 +73,7 @@ $(document).ready(function () {
                              return;
                    }
            });
+           */
          }
      });
 }); //$(document).ready ends
@@ -93,6 +97,7 @@ var fetch_userInfo = function () {
                         + "<td>" + "$ " + data[0]["balance"] + "</td>");
 
               user_default_balance = data[0]["balance"];
+              user_ID = data[0]["id"];
 
               $('#profilepic').attr("src", data[0]["profilepic_url"]);
               if(data[1] != undefined){
@@ -152,6 +157,7 @@ var fetch_userInfo = function () {
               var username;
               var profilepic_url;
               var default_acc_bal;
+              var user_id;
 
               for(i = 0; i < size; i++) {
                 firstname = data[i].firstname;
@@ -159,6 +165,7 @@ var fetch_userInfo = function () {
                 username = data[i].username;
                 profilepic_url = data[i].profilepic_url;
                 default_acc_bal = data[i].default_acc_bal;
+                user_id = data[i].id;
                 $("#contact-list").append("<li class=\"list-group-item\" id=\"list" + i + "\">" +
                   "<div class=\"col-xs-12 col-sm-3\">" +
                     "<img src=" + "\"" + profilepic_url + "\"" + "alt=\"Scott Stevens\" class=\"img-responsive img-circle\" />" +
@@ -174,11 +181,13 @@ var fetch_userInfo = function () {
                   $('#list' + i).data("firstname", firstname);
                   $('#list' + i).data("lastname", lastname);
                   $('#list' + i).data("default_acc_bal", default_acc_bal);
+                  $('#list' + i).data("user_id", user_id);
 
 
                   $('#list' + i).on('click', function(e) {
                     $('#transaction-modal h3').text("Transaction to " + $.data(this, "firstname") + " " + $.data(this, "lastname"));
                     receiver_default_balance = $.data(this, "default_acc_bal");
+                    receiver_ID = $.data(this, "user_id");
                     $('#transaction-modal').modal();
                   });
               }

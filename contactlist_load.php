@@ -15,7 +15,7 @@ error_reporting(E_ALL);
 
   $conn = new mysqli($hn, $usr, $pw, $db);
 
-  $sql = "SELECT firstname, lastname, username, profilepic_url, default_acc FROM User WHERE username != '$username'";
+  $sql = "SELECT id, firstname, lastname, username, profilepic_url, default_acc FROM User WHERE username != '$username'";
 
   $result = $conn->query($sql);
 
@@ -24,7 +24,7 @@ error_reporting(E_ALL);
     while($row = $result->fetch_assoc()) {
       if($remainingrows == 1) {
         print("{");
-        print("\"firstname\":" . "\"" . $row["firstname"] . "\"," . " \"lastname\":" . "\"" . $row["lastname"] . "\"," . " \"username\":" . "\"" . $row["username"] . "\"," . " \"profilepic_url\":" . "\"". $row["profilepic_url"] . "\"");
+        print("\"id\":" . $row["id"] . ", \"firstname\":" . "\"" . $row["firstname"] . "\"," . " \"lastname\":" . "\"" . $row["lastname"] . "\"," . " \"username\":" . "\"" . $row["username"] . "\"," . " \"profilepic_url\":" . "\"". $row["profilepic_url"] . "\"");
         $default_acc = $row["default_acc"];
         $sql = "SELECT balance FROM Account WHERE id=$default_acc";
         $result2 = $conn->query($sql);
@@ -33,7 +33,7 @@ error_reporting(E_ALL);
         print("}" . "\n");
       } else {
         print("{");
-        print("\"firstname\":" . "\"" . $row["firstname"] . "\"," . " \"lastname\":" . "\"" . $row["lastname"] . "\"," . " \"username\":" . "\"" . $row["username"] . "\"," . " \"profilepic_url\":" . "\"" . $row["profilepic_url"] . "\"");
+        print("\"id\":" . $row["id"] . ",\"firstname\":" . "\"" . $row["firstname"] . "\"," . " \"lastname\":" . "\"" . $row["lastname"] . "\"," . " \"username\":" . "\"" . $row["username"] . "\"," . " \"profilepic_url\":" . "\"" . $row["profilepic_url"] . "\"");
         $default_acc = $row["default_acc"];
         $sql = "SELECT balance FROM Account WHERE id=$default_acc";
         $result2 = $conn->query($sql);
