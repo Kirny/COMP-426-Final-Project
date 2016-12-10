@@ -56,8 +56,6 @@ $(document).ready(function () {
                alert("Negative amount not allowed!");
                return;
            }
-           alert(user_default_balance);
-           alert(receiver_default_balance);
            $.ajax(url_base + '/account_ctrl.php/' + user_def_id,
                   {type: 'POST',
                    dataType: "json",
@@ -210,8 +208,6 @@ var fetch_userInfo = function () {
                     $('#transaction-modal h3').text("Transaction to " + $.data(this, "firstname") + " " + $.data(this, "lastname"));
                     receiver_default_balance = $.data(this, "default_acc_bal");
                     receiver_def_id = $.data(this, "default_acc_id");
-                    alert(receiver_def_id);
-                    alert(user_def_id);
                     $('#transaction-modal').modal();
                   });
               }
