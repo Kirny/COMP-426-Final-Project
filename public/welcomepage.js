@@ -50,6 +50,7 @@ $(document).ready(function () {
 
      $("#send-transaction").on("click", function(e) {
          e.stopPropagation();
+         e.preventDefault();
          var amount = $('#transaction-amt').val();
          if(amount != ""){
            if(amount < 0){
