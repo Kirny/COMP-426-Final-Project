@@ -60,7 +60,7 @@ $(document).ready(function () {
                   {type: 'POST',
                    dataType: "json",
                    data:{'id': user_def_id,
-                         'balance': user_default_balance - parseFloat(amount)},
+                         'balance': parseFloat(user_default_balance) - parseFloat(amount)},
                    cache: false,
                    success: function (data) {
 
@@ -74,12 +74,11 @@ $(document).ready(function () {
                   {type: 'POST',
                    dataType: "json",
                    data:{'id': receiver_def_id,
-                         'balance': parseFloat(amount) > user_default_balance ? receiver_default_balance
-                          : receiver_default_balance + parseFloat(amount)},
+                         'balance': parseFloat(amount) > parseFloat(user_default_balance) ? receiver_default_balance
+                          : parseFloat(receiver_default_balance) + parseFloat(amount)},
                    cache: false,
                    success: function (data) {
                             alert("Transaction successful");
-                            $.modal.close();
                             $('#fullname div').remove();
                             $('#username div').remove();
                             $('#balance h4').remove();
@@ -88,6 +87,7 @@ $(document).ready(function () {
                             $('#default ~ tr').remove();
                             $('#contact-list').empty();
                             $('#contact-list li').remove();
+                            $.modal.close();
                             fetch_userInfo();
                    },
                    error: function(jqXHR, status, error){
@@ -203,7 +203,7 @@ var fetch_userInfo = function () {
                   $('#list' + i).data("default_acc_bal", default_acc_bal);
                   $('#list' + i).data("default_acc_id", default_acc_id);
 
-
+                  $('#list' + i).off();
                   $('#list' + i).on('click', function(e) {
                     $('#transaction-modal h3').text("Transaction to " + $.data(this, "firstname") + " " + $.data(this, "lastname"));
                     receiver_default_balance = $.data(this, "default_acc_bal");
